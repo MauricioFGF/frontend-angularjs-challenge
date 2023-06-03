@@ -9,14 +9,9 @@
     />
 
     <!-- build:css css/style.min.css -->
-
     <link rel="stylesheet" href="./css/style.css" type="text/css" />
-    <link rel="stylesheet" href="./css/ngDialog.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="./css/ngDialog-theme-default.css"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="lib/ngDialog/ngDialog.css" />
+    <link rel="stylesheet" href="lib/ngDialog/ngDialog-theme-default.css" />
 
     <!-- /build -->
 
@@ -24,7 +19,7 @@
   </head>
 
   <body
-    ng-controller="SequenceListCtrl"
+    ng-controller="sequenceListCtrl"
     ng-keypress="global.dialogOpen && enterKey($event,id) && dialogClose()"
   >
     <main>
@@ -111,11 +106,31 @@
     <!-- /build -->
 
     <!-- build:js js/script.min.js -->
-    <script src="js/ngDialog.min.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/directives.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Services -->
+    <script src="js/services/backendService.js"></script>
+    <script src="js/services/colorService.js"></script>
+    <script src="js/services/dataCollectionService.js"></script>
+    <script src="js/services/dataSupplierService.js"></script>
+    <script src="js/services/dialogService.js"></script>
+    <script src="js/services/sequenceDialogService.js"></script>
+    <script src="js/services/sequenceMatcherService.js"></script>
+
+    <!-- Directives -->
+    <script src="js/directives/barsChart.js"></script>
+    <script src="js/directives/minionRectangle.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/sequenceListCtrl.js"></script>
+
+    <!-- Filters -->
+    <script src="js/filters/bigNumber.js"></script>
+    <script src="js/filters/transcriber.js"></script>
+
+    <!-- Libs -->
+    <script src="lib/ngDialog/ngDialog.min.js"></script>
+
     <!-- /build -->
   </body>
 </html>

@@ -51,6 +51,8 @@ app.get("/report.txt", function (req, res) {
   res.type("text");
   res.download(__dirname + "/" + filename, "report.txt", function (err) {
     if (!err) console.log("Download report");
-    fs.unlink(__dirname + "/" + filename);
+    fs.unlink(__dirname + "/" + filename, (err) => {
+      if (err) console.log(err);
+    });
   });
 });
