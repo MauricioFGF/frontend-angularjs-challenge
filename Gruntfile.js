@@ -9,8 +9,26 @@ module.exports = function (grunt) {
       dist: {
         files: {
           "build/strands/strands.json": ["app/strands/strands.json"],
-          "build/view/popup.html": ["app/view/popup.html"],
         },
+      },
+    },
+
+    copy: {
+      main: {
+        files: [
+          {
+            expand: true,
+            flatten: true,
+            src: ["app/view/*"],
+            dest: "build/view/",
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: ["app/components/*"],
+            dest: "build/components/",
+          },
+        ],
       },
     },
 
@@ -54,5 +72,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-processhtml");
-  grunt.registerTask("build", ["concat", "uglify", "cssmin", "processhtml"]);
+  grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.registerTask("build", [
+    "concat",
+    "copy",
+    "uglify",
+    "cssmin",
+    "processhtml",
+  ]);
 };

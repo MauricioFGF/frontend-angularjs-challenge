@@ -18,7 +18,7 @@
     <br />
 
     <span class="error" id="notice" ng-show="global.seqError">
-      Please use only three letter sequences using capital letters A,G,C or T.
+      {{global.seqErrorMessage}}
     </span>
 
     <br />
@@ -30,7 +30,7 @@
       name="ok"
       id="ok"
       value="OK"
-      ng-click="editSequence(global.id) && dialogClose()"
+      ng-click="editSequence(global.id, global.editSeq)"
     />
     <input
       class="b"
@@ -38,7 +38,7 @@
       name="delete"
       id="delete"
       value="DELETE"
-      ng-click="remove(global.id);dialogClose()"
+      ng-click="remove(global.id)"
       ng-disabled="global.deleteDisable"
     />
 
@@ -49,9 +49,27 @@
       <span class="error" style="font-size: 0.6em">
         Weights (demonstration only):
         <br />
-        A: <input type="number" ng-model="weights[0]" style="width: 4em" /> G:
-        <input type="number" ng-model="weights[1]" style="width: 4em" /> T:
-        <input type="number" ng-model="weights[2]" style="width: 4em" />
+        A:
+        <input
+          type="number"
+          ng-value="weights[0]"
+          ng-blur="changeWeight($event, 0)"
+          style="width: 4em"
+        />
+        G:
+        <input
+          type="number"
+          ng-value="weights[1]"
+          ng-blur="changeWeight($event, 1)"
+          style="width: 4em"
+        />
+        T:
+        <input
+          type="number"
+          ng-value="weights[2]"
+          ng-blur="changeWeight($event, 2)"
+          style="width: 4em"
+        />
         C:
         <span> {{1 - weights[0] - weights[1] - weights[2] | number:2}} </span>
       </span>

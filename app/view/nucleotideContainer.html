@@ -1,0 +1,42 @@
+<main>
+  <div class="mainContainer">
+    <div class="tableContainer">
+      <div class="table">
+        <nucleotide-card
+          ng-repeat="sequence in sequences track by sequence.name"
+          id="seq{{$index}}"
+          color="{{sequence.color}}"
+          name="{{sequence.name}}"
+          probability="{{sequence.prob}}"
+          click="dialog($index)"
+        />
+      </div>
+
+      <div class="plus" ng-click="dialog()">+</div>
+    </div>
+
+    <chart-container />
+  </div>
+
+  <div class="buttons">
+    <btn name="save" value="SAVE REPORT" click="save()"></btn>
+
+    <btn id="clear" name="clear" value="CLEAR" click="clear()"></btn>
+
+    <btn
+      id="start"
+      name="start"
+      value="START"
+      disabled="global.collection"
+      click="startDataCollection()"
+    ></btn>
+
+    <btn
+      id="stop"
+      name="stop"
+      value="STOP"
+      disabled="!global.collection"
+      click="stopDataCollection()"
+    ></btn>
+  </div>
+</main>

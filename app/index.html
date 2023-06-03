@@ -18,78 +18,8 @@
     <meta charset="utf-8" />
   </head>
 
-  <body
-    ng-controller="sequenceListCtrl"
-    ng-keypress="global.dialogOpen && enterKey($event,id) && dialogClose()"
-  >
-    <main>
-      <div class="mainContainer">
-        <div class="tableContainer">
-          <div class="table">
-            <div
-              class="tbody"
-              ng-repeat="sequence in sequences"
-              id="seq{{$index}}"
-              ng-click="dialog($index)"
-            >
-              <div class="colorRect"><minion-rectangle /></div>
-              <div class="data">
-                {{sequence.name}}<br />
-                {{ sequence.prob | number: 5}} %
-              </div>
-            </div>
-          </div>
-
-          <div class="plus" ng-click="dialog()">+</div>
-        </div>
-
-        <div class="chartContainer">
-          <div class="svgContainer">
-            <bars-chart chart-data="sequences"></bars-chart>
-          </div>
-
-          <div class="label">
-            Samples analysed: {{global.counter | bigNumber}}
-          </div>
-        </div>
-      </div>
-
-      <div class="buttons">
-        <input
-          class="b"
-          type="button"
-          name="save"
-          value="SAVE REPORT"
-          ng-click="save()"
-        />
-        <input
-          class="b"
-          type="button"
-          id="clear"
-          name="clear"
-          value="CLEAR"
-          ng-click="clear()"
-        />
-        <input
-          class="b"
-          type="button"
-          id="start"
-          name="start"
-          value="START"
-          ng-disabled="global.collection"
-          ng-click="startDataCollection()"
-        />
-        <input
-          class="b"
-          type="button"
-          id="stop"
-          name="stop"
-          value="STOP"
-          ng-disabled="!global.collection"
-          ng-click="stopDataCollection()"
-        />
-      </div>
-    </main>
+  <body ng-controller="sequenceListCtrl" ng-keypress="enterKey($event,id)">
+    <nucleotide-container></nucleotide-container>
 
     <!-- build:[src] http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js -->
     <script src="bower_components/angular/angular.min.js"></script>
@@ -120,6 +50,10 @@
     <!-- Directives -->
     <script src="js/directives/barsChart.js"></script>
     <script src="js/directives/minionRectangle.js"></script>
+    <script src="js/directives/nucleotideContainer.js"></script>
+    <script src="js/directives/nucleotideCard.js"></script>
+    <script src="js/directives/chartContainer.js"></script>
+    <script src="js/directives/btn.js"></script>
 
     <!-- Controllers -->
     <script src="js/controllers/sequenceListCtrl.js"></script>

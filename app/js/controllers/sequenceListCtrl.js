@@ -33,6 +33,7 @@ MinIONApp.controller("sequenceListCtrl", [
     $scope.global = {
       counter: 0,
       seqError: false,
+      seqErrorMessage: "",
       showWeights: false,
       dialogOpen: false,
       id: 0,
@@ -43,6 +44,7 @@ MinIONApp.controller("sequenceListCtrl", [
     $scope.bufferSize = 10000;
 
     $scope.weights = [0.25, 0.25, 0.25];
+    $scope.changeWeights = angular.copy($scope.weights);
 
     $scope.sequences = BackendConnection.get();
 
@@ -87,13 +89,29 @@ MinIONApp.controller("sequenceListCtrl", [
     };
 
     $scope.dialogClose = function () {
+      $scope.changeWeights = [0.25, 0.25, 0.25];
       return Dialog.close($scope.global);
     };
 
-    $scope.editSequence = function () {
-      alert("Implementar edição");
+    $scope.editSequence = function (seqId, seqEdit) {
+      const seqEdited = SequenceEditor.editSequence(
+        seqId,
+        seqEdit,
+        $scope.sequences
+      );
+
+      if (!seqEdited.status) {
+        $scope.global.seqError = !seqEdited.status;
+        $scope.global.seqErrorMessage = seqEdited.message;
+      } else {
+        $scope.weights = angular.copy($scope.changeWeights);
+        $scope.dialogClose();
+      }
     };
 
+    $scope.changeWeight = function (event, index) {
+      $scope.changeWeights[index] = +event.target.value;
+    };
     $scope.remove = function (removeId) {
       $scope.sequences.splice(removeId, 1);
       $scope.dialogClose();

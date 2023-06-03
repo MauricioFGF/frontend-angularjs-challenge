@@ -7,18 +7,26 @@ dialogService.factory("Dialog", [
       openedDialog: "",
       open: function (seqId, global, sequences, scope) {
         global.seqError = false;
+        global.seqErrorMessage = "";
         global.dialogOpen = true;
 
-        if (seqId) {
+        if (seqId || seqId === 0) {
           global.id = seqId;
           global.editSeq = angular.copy(sequences[seqId]);
           global.deleteDisable = false;
         } else {
-          return alert("Implementar Adição");
+          global.id = -1;
+          global.deleteDisable = true;
+          global.editSeq = {
+            name: "",
+            structure: "",
+            rate: 0,
+            prob: 0,
+          };
         }
 
         this.openedDialog = ngDialog.open({
-          template: "view/popup.html",
+          template: "components/popup.html",
           className: "ngdialog-theme-default",
           scope: scope,
         });
