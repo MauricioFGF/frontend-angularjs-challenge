@@ -1,0 +1,31 @@
+.tbody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  cursor: pointer;
+  height: 180px;
+  transition: background 0.2s;
+  padding: 2rem;
+  border: 1px solid white;
+}
+
+.colorRect {
+  width: 60px;
+}
+
+.data {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.tbody:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tbody:active {
+  background: rgba(255, 255, 255, 1);
+}

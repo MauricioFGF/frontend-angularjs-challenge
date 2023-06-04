@@ -1,0 +1,33 @@
+.chartContainer {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  text-align: center;
+}
+
+.chartContainer svg {
+  border: black solid 3px;
+}
+
+.grid .tick {
+  stroke: grey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+.grid path {
+  stroke-width: 0;
+}
+.bars {
+  fill-opacity: 0.8;
+}
+text {
+  font-size: 0.8em;
+  fill: black;
+  fill-opacity: 1;
+  stroke-width: 0;
+}
+
+.label {
+  font-size: 24px;
+}

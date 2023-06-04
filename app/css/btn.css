@@ -1,0 +1,19 @@
+.btn {
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 1em;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s;
+  cursor: pointer;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+.btn:active {
+  background: rgba(255, 255, 255, 1);
+}
